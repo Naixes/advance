@@ -1,9 +1,9 @@
 class IndexController {
 	constructor() { }
 	actionIndex() {
-		return (ctx, next) => {
-			console.log('///')
-			ctx.body = 'hello'
+		return async (ctx, next) => {
+			// ctx.body = 'hello'
+			ctx.body = await ctx.render('index')
 		}
 	}
 }
