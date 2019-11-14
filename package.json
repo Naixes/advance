@@ -21,6 +21,7 @@
 	"devDependencies": {
 		"koa": "^2.11.0",
 		"koa-simple-router": "^0.2.0",
+		"koa-swig": "^2.2.1",
 		"supervisor": "^0.12.0"
 	}
 }

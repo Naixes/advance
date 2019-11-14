@@ -103,3 +103,12 @@ class IndexController {
 module.exports = IndexController
 ```
 
+#### 静态资源：koa-static
+
+```js
+
+```
+
+#### 使用vue
+
+#### 容错
