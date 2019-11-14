@@ -14,15 +14,48 @@ koa-simple-router：在koajs的middleware里面找
 
 ### 部分代码
 
+#### 路由：koa-simple-router
+
 ```js
 // package.json
 "server:dev": "supervisor ./app.js"
 
 // app.js
-const Koa require('koa')
+const Koa = require('Koa') 
+
+const app = new Koa()
+// 初始化所有路由
+require('./controllers/index')(app)
+
+app.listen(3000, () => {
+	console.log('服务启动成功')
+})
 
 // controllers/IndexController.js
+class IndexController {
+	constructor() {}
+	actionIndex() {
+		return (ctx, next) => {
+			ctx.body = 'hello'
+		}
+	}
+}
+
+module.exports = IndexController
 
 // controllers/index.js
+// 路由的注册机制
+const router = require('koa-simple-router')
+const IndexController = require('./IndexController')
+
+const indexController = new IndexController()
+
+module.exports = (app) => {
+	app.use(router(_ => {
+		// 伪静态，优化SEO
+		_.get('/index.html', indexController.actionIndex())
+		_.get('/', indexController.actionIndex())
+	}))
+}
 ```
 
