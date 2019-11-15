@@ -1,8 +1,18 @@
 <!-- 继承layout -->
 {% extends './layout.html' %}
-{% block title %} index {% endblock %}
+
+{% block style %}
+<!-- 注意引入时不要加上assets路径 -->
+<link rel="stylesheet" href="/styles/index.css">
+{% endblock  %}
+
+{% block title %} hello {% endblock %}
 {% block content %}
 <div>
 	<h1>hello swig</h1>
 </div>
 {% endblock %}
+
+{% block scripts %}
+<script src="/scripts/index.js"></script>
+{% endblock  %}

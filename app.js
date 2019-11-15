@@ -1,9 +1,13 @@
 const Koa = require('Koa')
+const serve = require('koa-static');
 const { join } = require('path')
 
 const app = new Koa()
 // 初始化所有路由
 require('./controllers')(app)
+
+// 静态资源
+app.use(serve(join(__dirname, 'assets')))
 
 // swig
 const co = require('co');
