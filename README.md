@@ -112,3 +112,5 @@ module.exports = IndexController
 #### 使用vue
 
 #### 容错
+
+#### 日志管理log4js
