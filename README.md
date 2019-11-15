@@ -106,7 +106,39 @@ module.exports = IndexController
 #### 静态资源：koa-static
 
 ```js
+// html
+<!-- 继承layout -->
+{% extends './layout.html' %}
 
+{% block styles %}
+<!-- 注意引入时不要加上assets路径 -->
+<link rel="stylesheet" href="/styles/index.css">
+{% endblock  %}
+
+{% block title %} hello {% endblock %}
+{% block content %}
+<div>
+	<h1>hello swig</h1>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="/scripts/index.js"></script>
+{% endblock  %}
+
+// app.js
+...
+const Koa = require('Koa')
+const serve = require('koa-static');
+const { join } = require('path')
+
+const app = new Koa()
+// 初始化所有路由
+require('./controllers')(app)
+
+// 静态资源
+app.use(serve(join(__dirname, 'assets')))
+...
 ```
 
 #### 使用vue
