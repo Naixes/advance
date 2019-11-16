@@ -12,9 +12,9 @@ supervisor
 
 koa-simple-router：在koajs的middleware里面找
 
-### 部分代码
+## 开发
 
-#### 路由：koa-simple-router
+### 路由：koa-simple-router
 
 ```js
 // package.json
@@ -59,7 +59,7 @@ module.exports = (app) => {
 }
 ```
 
-#### 模板：swig
+### 模板：swig
 
 安装：koa-awig
 
@@ -103,7 +103,7 @@ class IndexController {
 module.exports = IndexController
 ```
 
-#### 静态资源：koa-static
+### 静态资源：koa-static
 
 ```js
 // html
@@ -135,7 +135,7 @@ app.use(serve(join(__dirname, 'assets')))
 ...
 ```
 
-#### 使用vue
+### 使用vue
 
 ```js
 // index.html
@@ -176,9 +176,9 @@ app.context.render = co.wrap(render({
 }));
 ```
 
-#### 容错
+### 容错
 
-##### 日志管理log4js
+#### 日志管理log4js
 
 ```js
 // app.js
@@ -239,5 +239,40 @@ const errorHandler = {
 }
 
 module.exports = errorHandler
+```
+
+### 优化配置
+
+```js
+// config/index.js
+const { join } = require('path');
+const _ = require('lodash')
+
+let config = {
+	"viewDir": join(__dirname, '..', 'views'),
+	"staticDir": join(__dirname, '..', 'assets')
+}
+
+if (process.env.NODE_ENV === 'development') {
+	const localConfig = {
+		port: 3000
+	}
+	config = _.extend(config, localConfig)
+}
+
+if (process.env.NODE_ENV === 'production') {
+	const prodConfig = {
+		port: 80
+	}
+	config = _.extend(config, prodConfig)
+}
+
+module.exports = config
+
+// package.json
+"scripts": {
+    ...
+    "server:dev": "cross-env NODE_ENV=development supervisor ./app.js"
+},
 ```
 
