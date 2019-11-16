@@ -4,7 +4,9 @@ class IndexController {
 		return async (ctx, next) => {
 			// ctx.body = 'hello'
 			ctx.body = await ctx.render('index', {
-				data: 'hello sin'
+				// data: 'hello sin'
+				// 500
+				data
 			})
 		}
 	}

@@ -1,0 +1,11 @@
+[2019-11-16T16:00:53.777] [ERROR] slog - ReferenceError: data is not defined
+    at D:\project\Front\project\advance\controllers\IndexController.js:9:5
+    at dispatch (D:\project\Front\project\advance\node_modules\koa-simple-router\index.js:186:18)
+    at Router._lookup (D:\project\Front\project\advance\node_modules\koa-simple-router\index.js:198:12)
+    at D:\project\Front\project\advance\node_modules\koa-simple-router\index.js:138:21
+    at dispatch (D:\project\Front\project\advance\node_modules\koa-compose\index.js:42:32)
+    at app.use (D:\project\Front\project\advance\middleware\errorHandler.js:17:10)
+    at dispatch (D:\project\Front\project\advance\node_modules\koa-compose\index.js:42:32)
+    at app.use (D:\project\Front\project\advance\middleware\errorHandler.js:6:11)
+    at dispatch (D:\project\Front\project\advance\node_modules\koa-compose\index.js:42:32)
+    at D:\project\Front\project\advance\node_modules\koa-compose\index.js:34:12

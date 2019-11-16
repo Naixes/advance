@@ -1,4 +1,4 @@
-# 开发日记
+# 开发日志
 
 ## 项目初始化
 
@@ -178,10 +178,66 @@ app.context.render = co.wrap(render({
 
 #### 容错
 
-```js
+##### 日志管理log4js
 
+```js
+// app.js
+...
+
+const log4js = require('log4js')
+const errorHandler = require('./middleware/errorHandler')
+
+// 日志
+// node不记服务的日志只记业务的错误，一般nginx来记这些，有专门的日志服务器
+log4js.configure({
+	// {name: {type, filename}}
+	appenders: { slog: { type: 'file', filename: 'logs/advance.log' } },
+	categories: { default: { appenders: ['slog'], level: 'error' } }
+});
+const logger = log4js.getLogger('slog')
+// logger.trace('Entering cheese testing');
+// logger.debug('Got cheese.');
+// logger.info('Cheese is Comté.');
+// logger.warn('Cheese is quite smelly.');
+// logger.error('Cheese is too ripe!');
+// logger.fatal('Cheese was breeding ground for listeria.');
+
+const app = new Koa()
+
+// 处理错误
+errorHandler.error(app, logger)
+
+...
+
+// errorHandler
+const errorHandler = {
+	error(app, logger) {
+		// 500
+		app.use(async (ctx, next) => {
+			try {
+				await next()
+			} catch (error) {
+				// 微信，电话，邮件等报警
+				logger.error(error)
+				ctx.status = 500
+				ctx.body = '苦海无涯，回头是岸'
+				// 或者返回一个页面
+				// ctx.render('error')
+			}
+		})
+		// 404
+		app.use(async (ctx, next) => {
+			await next()
+			if (404 !== ctx.status) {
+				return
+			}
+			// 有很多项目即使出现了404也会返回200，是为了防止百度降权
+			ctx.status = 404
+			ctx.body = '<script type="text/javascript" src="//qzonestyle.gtimg.cn/qzone/hybrid/app/404/search_children.js" charset="utf-8"></script>'
+		})
+	}
+}
+
+module.exports = errorHandler
 ```
 
-
-
-#### 日志管理log4js
