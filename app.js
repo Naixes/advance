@@ -1,8 +1,8 @@
-const { join } = require('path')
 const Koa = require('Koa')
 const serve = require('koa-static');
 const log4js = require('log4js')
 
+const config = require('./config')
 const errorHandler = require('./middleware/errorHandler')
 
 // 日志
@@ -29,14 +29,14 @@ errorHandler.error(app, logger)
 require('./controllers')(app)
 
 // 静态资源
-app.use(serve(join(__dirname, 'assets')))
+app.use(serve(config.staticDir))
 
 // 模板，swig
 const co = require('co');
 const render = require('koa-swig');
 
 app.context.render = co.wrap(render({
-	root: join(__dirname, 'views'), // 指定模板
+	root: config.viewDir, // 指定模板
 	autoescape: true,
 	cache: 'memory', // disable, set to false 缓存 重要！！性能瓶颈 
 	ext: 'html',
@@ -45,6 +45,6 @@ app.context.render = co.wrap(render({
 	writeBody: false
 }));
 
-app.listen(3000, () => {
+app.listen(config.port, () => {
 	console.log('服务启动成功')
 })

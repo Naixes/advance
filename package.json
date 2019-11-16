@@ -5,7 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"server:dev": "supervisor ./app.js"
+		"server:dev": "cross-env NODE_ENV=development supervisor ./app.js"
 	},
 	"repository": {
 		"type": "git",
@@ -19,10 +19,12 @@
 	},
 	"homepage": "https://github.com/Naixes/advance#readme",
 	"devDependencies": {
+		"cross-env": "^6.0.3",
 		"koa": "^2.11.0",
 		"koa-simple-router": "^0.2.0",
 		"koa-static": "^5.0.0",
 		"koa-swig": "^2.2.1",
+		"lodash": "^4.17.15",
 		"log4js": "^6.0.0",
 		"supervisor": "^0.12.0"
 	}
