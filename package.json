@@ -5,6 +5,7 @@
 	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "babel ./assets/scripts/add.js --out-file ./assets/scripts/add-bundle.js",
 		"server:dev": "cross-env NODE_ENV=development supervisor ./app.js"
 	},
 	"repository": {
@@ -19,6 +20,10 @@
 	},
 	"homepage": "https://github.com/Naixes/advance#readme",
 	"devDependencies": {
+		"@babel/cli": "^7.7.0",
+		"@babel/core": "^7.7.2",
+		"@babel/plugin-transform-modules-systemjs": "^7.7.0",
+		"@babel/preset-env": "^7.7.1",
 		"cross-env": "^6.0.3",
 		"koa": "^2.11.0",
 		"koa-simple-router": "^0.2.0",

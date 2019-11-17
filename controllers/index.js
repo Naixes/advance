@@ -9,5 +9,6 @@ module.exports = (app) => {
 		// 伪静态，优化SEO
 		_.get('/index.html', indexController.actionIndex())
 		_.get('/', indexController.actionIndex())
+		_.get('/add', indexController.actionAdd())
 	}))
 }

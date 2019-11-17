@@ -38,7 +38,8 @@ const render = require('koa-swig');
 app.context.render = co.wrap(render({
 	root: config.viewDir, // 指定模板
 	autoescape: true,
-	cache: 'memory', // disable, set to false 缓存 重要！！性能瓶颈 
+	// cache: 'memory', // disable, set to false 缓存 重要！！性能瓶颈 
+	cache: false,
 	ext: 'html',
 	varControls: ["[[", "]]"], // 配置模板字符串，防止和vue的{{}}冲突
 

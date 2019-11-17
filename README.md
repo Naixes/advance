@@ -276,3 +276,47 @@ module.exports = config
 },
 ```
 
+此时完成了一个简单的egg
+
+### systemjs
+
+```js
+class Create {
+	constructor() { }
+	fn() {
+		console.log('es6 初始化')
+	}
+}
+
+// 浏览器报错，不支持export语法
+export default Create
+```
+
+解决方法：使用systenjs
+
+1. 引入并使用system
+
+```html
+// add.html
+```
+
+2. 让system支持es6语法：使用babel
+
+   创建.babelrc文件
+
+   安装@babel/cli @babel/core @babel/preset-env
+
+   支持systemjs：安装@babel/plugin-transform-modules-systemjs
+
+```js
+{
+	"presets": [
+		"@babel/preset-env"
+	],
+	"plugins": [
+		"@babel/plugin-transform-modules-systemjs"
+	]
+}
+```
+
+​	

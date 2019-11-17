@@ -10,6 +10,12 @@ class IndexController {
 			})
 		}
 	}
+	actionAdd() {
+		return async (ctx, next) => {
+			// ctx.body = 'hello'
+			ctx.body = await ctx.render('add')
+		}
+	}
 }
 
 module.exports = IndexController
