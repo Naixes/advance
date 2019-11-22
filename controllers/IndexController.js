@@ -1,5 +1,7 @@
+// 一个模块一个controller
 class IndexController {
 	constructor() { }
+	// 路由处理函数
 	actionIndex() {
 		return async (ctx, next) => {
 			// ctx.body = 'hello'
