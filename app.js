@@ -28,13 +28,15 @@ errorHandler.error(app, logger)
 // 初始化所有路由
 require('./controllers')(app)
 
-// 静态资源
+// 静态资源，可以设置过期时间默认访问文件等
 app.use(serve(config.staticDir))
 
 // 模板，swig
 const co = require('co');
 const render = require('koa-swig');
 
+// app.context相当于ctx的原型
+// 可以放一些全局参数
 app.context.render = co.wrap(render({
 	root: config.viewDir, // 指定模板
 	autoescape: true,
