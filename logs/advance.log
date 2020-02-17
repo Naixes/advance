@@ -20,3 +20,15 @@
     at app.use (D:\project\Front\project\advance\middleware\errorHandler.js:6:11)
     at dispatch (D:\project\Front\project\advance\node_modules\koa-compose\index.js:42:32)
     at D:\project\Front\project\advance\node_modules\koa-compose\index.js:34:12
+[2020-02-14T17:58:41.235] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
+[2020-02-14T17:58:43.705] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
+[2020-02-14T17:58:53.461] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
+[2020-02-14T18:56:56.311] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
+[2020-02-14T19:06:10.869] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
+[2020-02-14T19:06:11.845] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
+[2020-02-14T19:09:40.818] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
+[2020-02-14T19:09:43.019] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
+[2020-02-14T19:12:43.185] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
+[2020-02-14T19:13:29.751] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
+[2020-02-14T19:26:55.111] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
+[2020-02-14T19:27:03.266] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
