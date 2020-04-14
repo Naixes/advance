@@ -366,7 +366,132 @@ class SafeRequest {
 }
 
 module.exports = SafeRequest
+```
+
+#jsdoc（jsAPI文档生成器os系统）
+
+### package.json
+
+#### 生命周期
+
+```js
+{
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1", // 1有错退出，0正常退出
+		"build": "babel ./assets/scripts/add.js --out-file ./assets/scripts/add-bundle.js",
+		"server:dev": "cross-env NODE_ENV=development supervisor ./app.js"
+         // 生命周期
+		"pretest": "\"echo pretest $LOGNAME\"" // 钩子，可以取变量，$LOGNAME当前系统登录名
+         "test:dev": "npm run test && npm run dev" // 同时执行两个命令，&&并行，&串行
+    // 其他配置
+    config: {
+        "port": 3000
+    }
+}
+
+// npm run env 可以查看配置变量
+```
+
+#### 优化
+
+##### npm-run-all包
+
+```js
+{
+	"scripts": {
+        ...
+        "test:dev": "npm run all --parallel test dev", // --parallel改为并行，默认串行
+        ...
+}
+```
+
+#### 工程化配置
+
+```js
+{
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1", // 1有错退出，0正常退出
+         "start": "",
+         "build": "",
+         
+		"es:build": "babel ./assets/scripts/add.js --out-file ./assets/scripts/add-bundle.js",
+         "test:dev": "npm run all --parallel test dev",
+		"server:start": "cross-env NODE_ENV=development supervisor ./app.js", // 开发的后端
+		"server:dev": "cross-env NODE_ENV=development gulp", // 开发的后端
+		"server:prod": "cross-env NODE_ENV=development supervisor ./app.js", // 线上的后端
+		"server:hint": "cross-env NODE_ENV=development supervisor ./app.js", // js脚本校验
+         "client:dev": "webpack --mode development", // 开发的前端
+         "client:prod": "webpack --mode production" // 线上的前端
+}
+```
+
+根据配置新建文件夹scripts-》server-》dev.sh/start.sh/prod.sh/hint.sh...
+
+安装包scripty
+
+```js
+// start.sh
+#!/usr/bin/env sh
+cross-env NODE_ENV=development supervisor ./app.js
+...
+// package.json
+{
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1", // 1有错退出，0正常退出
+         "start": "",
+         "build": "",
+             
+		"es:build": "babel ./assets/scripts/add.js --out-file ./assets/scripts/add-bundle.js",
+         "test:dev": "npm run all --parallel test dev",
+		"server:start": "scripty", // 开发的后端
+		"server:dev": "scripty", // 开发的后端
+		"server:prod": "scripty", // 线上的后端
+		"server:hint": "scripty", // js脚本校验
+         "client:dev": "scripty", // 开发的前端
+         "client:prod": "scripty" // 线上的前端
+}
+// 注意可执行权
+chmod -R a+x scripts // 更改权限
+```
+
+### webpack.config.js
+
+```js
+// "client:dev": "webpack --mode development", 执行client:dev
+console.log(process.argv.slice(2)) // [webpack的执行环境,webpack路径,"--mode","development"]
+
+const argv = require("yargs-parser") // 可以转换为key，value格式
+console.log(argv(process.argv.slice(2)))
 
 ```
 
-jsdoc（os系统）
+新建文件夹config-》webpack.development.js/webpack.production.js
+
+```js
+// webpack.config.js
+const argv = require("yargs-parser")(process.argv.slice(2))) // 可以转换为key，value格式
+
+const _mode = argv[mode] || "development"
+const _mergeConfig = require(`./config/webpack.${_mode}`)
+```
+
+ 备份oop版本的server
+
+将require改为import（面向未来编程，好用 ），app.js和config
+
+使用gulp编译app.js
+
+```js
+// gulp 适合处理一些小任务，快，配置简单
+// rollup 适合前端的库 react vue
+// webpack 打包工具
+// gulpfile
+const gulp = require("gulp")
+const babel = require("gulp-babel")
+const watch = require("gulp-watch")
+
+const entry = "./src/server/**/*.js"
+```
+
+优化config
+
