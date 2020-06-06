@@ -1,5 +1,6 @@
 // 引入模型
 const Index = require('../models/Index')
+const {URLSearchParams} = require("url")
 
 class IndexController {
 	constructor() { }
@@ -14,7 +15,14 @@ class IndexController {
 	actionAdd() {
 		return async (ctx, next) => {
 			// ctx.body = 'hello'
-			ctx.body = await ctx.render('add')
+			// ctx.body = await ctx.render('add')
+			// 构建参数
+			const params = new URLSearchParams()
+			params.append("books[name]", "测试")
+			params.append("books[author]", "数据")
+			const index = new Index()
+			const result = await index.saveData({params})
+			ctx.body = result
 		}
 	}
 }

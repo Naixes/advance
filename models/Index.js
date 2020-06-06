@@ -17,12 +17,24 @@ class Index {
 	}
 
 	/**
-	 * 获取后台返回的图书相关数据的方法
+	 * 获取后台返回的图书相关数据
 	 * @param {*} options 
 	 */
 	getData(options) {
 		const safeRequest = new SafeRequest('book')
 		return safeRequest.fetch({})
+	}
+
+	/**
+	 * 保存用户传入数据
+	 * @param {*} options 
+	 */
+	saveData(options) {
+		const safeRequest = new SafeRequest('book/create')
+		return safeRequest.fetch({
+			method: "POST",
+			params: options.params
+		})
 	}
 }
 module.exports = Index

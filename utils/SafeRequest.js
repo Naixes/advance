@@ -10,6 +10,12 @@ class SafeRequest {
 	// 返回重新封装的一个Promise，对请求过程中的错误进行拦截，避免后台接口错误影响前端
 	fetch(options) {
 		let sfetch = fetch(this.baseUrl + this.url)
+		if(options) {
+			sfetch = fetch(this.baseUrl + this.url, {
+				methods: options.methods,
+				body: options.params
+			})
+		}
 		return new Promise((resolve, reject) => {
 			let result = {
 				code: 0,
