@@ -457,22 +457,23 @@ chmod -R a+x scripts // 更改权限
 
 ### webpack.config.js
 
+处理process.argv
+
 ```js
 // "client:dev": "webpack --mode development", 执行client:dev
 console.log(process.argv.slice(2)) // [webpack的执行环境,webpack路径,"--mode","development"]
 
 const argv = require("yargs-parser") // 可以转换为key，value格式
 console.log(argv(process.argv.slice(2)))
-
 ```
 
 新建文件夹config-》webpack.development.js/webpack.production.js
 
 ```js
 // webpack.config.js
-const argv = require("yargs-parser")(process.argv.slice(2))) // 可以转换为key，value格式
+const argv = require("yargs-parser")(process.argv.slice(2)) // 可以转换为key，value格式
 
-const _mode = argv[mode] || "development"
+const _mode = argv.mode || "development"
 const _mergeConfig = require(`./config/webpack.${_mode}`)
 ```
 
