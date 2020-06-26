@@ -439,17 +439,17 @@ cross-env NODE_ENV=development supervisor ./app.js
 {
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1", // 1有错退出，0正常退出
-         "start": "",
-         "build": "",
+    "start": "",
+    "build": "",
              
 		"es:build": "babel ./assets/scripts/add.js --out-file ./assets/scripts/add-bundle.js",
-         "test:dev": "npm run all --parallel test dev",
+    "test:dev": "npm run all --parallel test dev",
 		"server:start": "scripty", // 开发的后端
 		"server:dev": "scripty", // 开发的后端
 		"server:prod": "scripty", // 线上的后端
 		"server:hint": "scripty", // js脚本校验
-         "client:dev": "scripty", // 开发的前端
-         "client:prod": "scripty" // 线上的前端
+    "client:dev": "scripty", // 开发的前端
+    "client:prod": "scripty" // 线上的前端
 }
 // 注意可执行权
 chmod -R a+x scripts // 更改权限
