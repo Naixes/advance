@@ -26,7 +26,7 @@ class Index {
 	}
 
 	/**
-	 * 保存用户传入数据
+	 * 保存用户传入数据到接口
 	 * @param {*} options 
 	 */
 	saveData(options) {

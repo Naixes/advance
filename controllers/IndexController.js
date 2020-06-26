@@ -16,7 +16,7 @@ class IndexController {
 		return async (ctx, next) => {
 			// ctx.body = 'hello'
 			// ctx.body = await ctx.render('add')
-			// 构建参数
+			// 构建参数：php
 			const params = new URLSearchParams()
 			params.append("books[name]", "测试")
 			params.append("books[author]", "数据")

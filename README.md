@@ -380,11 +380,11 @@ module.exports = SafeRequest
 		"test": "echo \"Error: no test specified\" && exit 1", // 1有错退出，0正常退出
 		"build": "babel ./assets/scripts/add.js --out-file ./assets/scripts/add-bundle.js",
 		"server:dev": "cross-env NODE_ENV=development supervisor ./app.js"
-         // 生命周期
+    // 生命周期
 		"pretest": "\"echo pretest $LOGNAME\"" // 钩子，可以取变量，$LOGNAME当前系统登录名
-         "test:dev": "npm run test && npm run dev" // 同时执行两个命令，&&并行，&串行
+    "test:dev": "npm run test && npm run dev" // 同时执行两个命令，&&并行，&串行
     // 其他配置
-    config: {
+    "config": {
         "port": 3000
     }
 }
@@ -411,17 +411,18 @@ module.exports = SafeRequest
 {
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1", // 1有错退出，0正常退出
-         "start": "",
-         "build": "",
+    "start": "",
+    "build": "",
          
-		"es:build": "babel ./assets/scripts/add.js --out-file ./assets/scripts/add-bundle.js",
-         "test:dev": "npm run all --parallel test dev",
-		"server:start": "cross-env NODE_ENV=development supervisor ./app.js", // 开发的后端
-		"server:dev": "cross-env NODE_ENV=development gulp", // 开发的后端
-		"server:prod": "cross-env NODE_ENV=development supervisor ./app.js", // 线上的后端
-		"server:hint": "cross-env NODE_ENV=development supervisor ./app.js", // js脚本校验
-         "client:dev": "webpack --mode development", // 开发的前端
-         "client:prod": "webpack --mode production" // 线上的前端
+    "es:build": "babel ./assets/scripts/add.js --out-file ./assets/scripts/add-bundle.js",
+      
+    "test:dev": "npm run all --parallel test dev",
+    "server:start": "cross-env NODE_ENV=development supervisor ./app.js", // 开发的后端
+    "server:dev": "cross-env NODE_ENV=development gulp", // 开发的后端
+    "server:prod": "cross-env NODE_ENV=production gulp", // 线上的后端
+    "server:hint": "cross-env NODE_ENV=hint gulp", // js脚本校验
+    "client:dev": "webpack --mode development", // 开发的前端
+    "client:prod": "webpack --mode production" // 线上的前端
 }
 ```
 

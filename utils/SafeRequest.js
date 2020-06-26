@@ -10,7 +10,10 @@ class SafeRequest {
 	// 返回重新封装的一个Promise，对请求过程中的错误进行拦截，避免后台接口错误影响前端
 	fetch(options) {
 		let sfetch = fetch(this.baseUrl + this.url)
+		// 如果有参数
 		if(options) {
+			// 有错的话可能是node-fetch包的原因，可以换一个包
+			console.log(options.params)
 			sfetch = fetch(this.baseUrl + this.url, {
 				methods: options.methods,
 				body: options.params

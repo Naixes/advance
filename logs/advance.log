@@ -32,3 +32,5 @@
 [2020-02-14T19:13:29.751] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
 [2020-02-14T19:26:55.111] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
 [2020-02-14T19:27:03.266] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
+[2020-06-26T08:48:15.843] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
+[2020-06-26T08:48:48.917] [ERROR] slog - { code: 1, message: 'node-fetch err', data: [] }
