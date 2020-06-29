@@ -6,6 +6,8 @@ const babel = require("gulp-babel")
 const watch = require("gulp-watch")
 const rollup = require("gulp-rollup")
 const replace = require("rollup-plugin-replace")
+const eslint = require("gulp-eslint")
+const { src } = require("gulp")
 
 // * windows不能识别
 const entry = "./src/server/**/*.js"
@@ -62,10 +64,21 @@ function buildconfig() {
 }
 
 // 代码校验
+function buildhint() {
+    return hulp.src(entry)
+        .pipe(eslint())
+        .pipe(eslint.format())
+        .pipe(eslint.failAfterError())
+}
+
 let build = gulp.series(builddev)
 console.log(process.env.NODE_ENV)
 if(process.env.NODE_ENV == 'production') {
     // 先完成核心的编译流程，再完成清洗node代码流程
     build = gulp.series(buildprod, buildconfig)
+}
+// 创建配置文件.eslintrc
+if(process.env.NODE_ENV == 'hint') {
+    build = gulp.series(buildhint)
 }
 gulp.task('default', build)
