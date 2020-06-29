@@ -5,6 +5,7 @@ const gulp = require("gulp")
 const babel = require("gulp-babel")
 const watch = require("gulp-watch")
 const rollup = require("gulp-rollup")
+const replace = require("rollup-plugin-replace")
 
 // * windows不能识别
 const entry = "./src/server/**/*.js"
@@ -42,9 +43,16 @@ function buildprod() {
 }
 
 // 清洗流
+// tree shaking
 function buildconfig() {
     return gulp.src(entry)
         .pipe(rollup({
+            plugins: [
+                // 变量替换
+                replace({
+                    'process.env.NODE_ENV': JSON.stringify('production')
+                })
+            ],
             output: {
                 format: 'cjs'
             },
