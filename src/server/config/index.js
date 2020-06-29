@@ -6,6 +6,11 @@ let config = {
 	"staticDir": join(__dirname, '..', 'assets')
 }
 
+// 测试清洗
+if(false) {
+	console.log('lalala~')
+}
+
 if (process.env.NODE_ENV === 'development') {
 	const localConfig = {
 		port: 3000,

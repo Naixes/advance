@@ -38,6 +38,7 @@
 		"cross-env": "^6.0.3",
 		"gulp": "^4.0.2",
 		"gulp-babel": "^8.0.0",
+		"gulp-rollup": "^2.17.0",
 		"gulp-watch": "^5.0.1",
 		"koa": "^2.11.0",
 		"koa-simple-router": "^0.2.0",
