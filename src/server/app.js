@@ -1,9 +1,9 @@
-const Koa = require('Koa')
-const serve = require('koa-static');
-const log4js = require('log4js')
+import Koa from 'Koa'
+import serve from 'koa-static'
+import log4js from 'log4js'
 
-const config = require('./config')
-const errorHandler = require('./middleware/errorHandler')
+import config from './config'
+import errorHandler from './middleware/errorHandler'
 
 // 日志
 // node不记服务的日志只记业务的错误，一般nginx来记这些，有专门的日志服务器
@@ -26,14 +26,15 @@ const app = new Koa()
 errorHandler.error(app, logger)
 
 // 初始化所有路由
-require('./controllers')(app)
+import controllers from './controllers'
+controllers(app)
 
 // 静态资源，可以设置过期时间默认访问文件等
 app.use(serve(config.staticDir))
 
 // 模板，swig
-const co = require('co');
-const render = require('koa-swig');
+import co from 'co'
+import render from 'koa-swig'
 
 // app.context相当于ctx的原型
 // 可以放一些全局参数

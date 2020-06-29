@@ -481,7 +481,7 @@ const _mergeConfig = require(`./config/webpack.${_mode}`)
 
 将require改为import（面向未来编程，好用 ），app.js和config
 
-使用gulp编译app.js
+使用gulp编译app.js，因为node不支持import
 
 ```js
 // gulp 适合处理一些小任务，快，配置简单
