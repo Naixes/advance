@@ -44,7 +44,7 @@ function buildprod() {
         .pipe(gulp.dest('dist'))
 }
 
-// 清洗流
+// 清洗流：只清洗配置文件
 // tree shaking
 function buildconfig() {
     return gulp.src(entry)
@@ -73,11 +73,13 @@ function buildhint() {
 
 let build = gulp.series(builddev)
 console.log(process.env.NODE_ENV)
+
 if(process.env.NODE_ENV == 'production') {
     // 先完成核心的编译流程，再完成清洗node代码流程
     build = gulp.series(buildprod, buildconfig)
 }
-// 创建配置文件.eslintrc
+
+// eslint需要创建配置文件.eslintrc
 if(process.env.NODE_ENV == 'hint') {
     build = gulp.series(buildhint)
 }
